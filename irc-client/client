@@ -23,9 +23,22 @@ filemenu.add_command(label="new")
 filemenu.add_command(label="open...")
 filemenu.add_separator()
 filemenu.add_command(label="exit")
+
+e = Entry(root)
+e.pack()
+e.delete(0, END)
+e.insert(0, "default")
+
+e.focus_set()
+
+def callback():
+    print e.get()
+
+b = Button(root, text="get", width=10, command=callback)
+b.pack()
 RTitle=root.title("Windows")
 
-root.geometry("800x800+300+300")
+root.geometry("600x600+300+300")
 
 
 

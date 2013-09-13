@@ -1,0 +1,33 @@
+from Tkinter import *
+import sys
+
+class App:
+    def __init__(self, master):
+        w = Label(root, text="HELLO!!")
+        w.pack()
+
+    def callback():
+        print "called the callback!"
+
+
+   
+root = Tk()
+app = App(root) 
+# create a menu
+menu = Menu(root)
+root.config(menu=menu)
+
+filemenu = Menu(menu)
+menu.add_cascade(label="File", menu=filemenu)
+filemenu.add_command(label="new")
+filemenu.add_command(label="open...")
+filemenu.add_separator()
+filemenu.add_command(label="exit")
+RTitle=root.title("Windows")
+
+root.geometry("800x800+300+300")
+
+
+
+root.mainloop()
+

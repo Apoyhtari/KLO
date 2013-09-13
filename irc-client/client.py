@@ -11,7 +11,7 @@ class App:
 def callback():
 	print "called the callback!"
 
-if __name__ = "__main__":        
+if __name__ == "__main__":        
 	root = Tk()
 	app = App(root)
 

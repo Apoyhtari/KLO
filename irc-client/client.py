@@ -3,16 +3,26 @@ import sys
 
 class App:
     def __init__(self, master):
-    
+        
         w = Canvas(master, width=500, height=400)
         w.pack()
         w.create_rectangle(10, 350, 500, 10, fill="white")
         canvas_id = w.create_text(15, 10, anchor="nw")
-        w.itemconfig(canvas_id, text=StringVar())
-        w.insert(canvas_id, 12, " ")
+        e = Entry(root, width=80)
+        e.pack()
+        e.delete(0, END)
+        e.insert(0, "a default value")
+        s = e.get()
+        b = Button(root, text="Send", width=10, command=callback)
+        b.pack()
+        w.itemconfig(canvas_id, text=s)
+        w.insert(canvas_id, 12, "")
+        w.update()
+
         
 def callback():
-	print StringVar()
+	print e.get()
+	print s
 	
 
 if __name__ == "__main__":        
@@ -30,13 +40,12 @@ if __name__ == "__main__":
 	filemenu.add_separator()
 	filemenu.add_command(label="exit")
 	
-	v = StringVar()
-	e = Entry(root, width=80, textvariable=v)
-	e.pack()
-	v.set("a default value")
-	b = Button(root, text="Send", width=10, command=callback)
-	b.pack()
-	s =v.get()
+	
+	
+	
+
+	
+	       
 	
 	
 	RTitle=root.title("Windows")

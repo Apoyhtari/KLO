@@ -2,27 +2,28 @@ from Tkinter import *
 import sys
 
 class App:
+
     def __init__(self, master):
         
-        w = Canvas(master, width=500, height=400)
-        w.pack()
-        w.create_rectangle(10, 350, 500, 10, fill="white")
-        canvas_id = w.create_text(15, 10, anchor="nw")
-        e = Entry(root, width=80)
-        e.pack()
-        e.delete(0, END)
-        e.insert(0, "a default value")
-        s = e.get()
-        b = Button(root, text="Send", width=10, command=callback)
-        b.pack()
-        w.itemconfig(canvas_id, text=s)
-        w.insert(canvas_id, 12, "")
-        w.update()
-
+        self.w = Canvas(master, width=500, height=400)
+        self.w.pack()
+        self.w.create_rectangle(10, 350, 500, 10, fill="white")
+        self.canvas_id = self.w.create_text(15, 10, anchor="nw")
+        self.e = Entry(root, width=80)
+        self.e.pack()
+        self.e.delete(0, END)
+        self.e.insert(0, "a default value")
+        self.s = self.e.get()
+        self.b = Button(root, text="Send", width=10, command=self.callback)
+        self.b.pack()
+        self.w.itemconfig(self.canvas_id, text=self.s)
+        self.w.insert(self.canvas_id, 12, "")
+        self.w.update()
+    def callback(self):
+        self.s += "\n" +self.e.get()
+        self.w.itemconfig(self.canvas_id, text=self.s)
+        self.w.update()
         
-def callback():
-	print e.get()
-	print s
 	
 
 if __name__ == "__main__":        

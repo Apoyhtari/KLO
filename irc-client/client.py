@@ -1,5 +1,7 @@
 from Tkinter import *
 import sys
+import socket
+import string
 
 class App:
 
@@ -27,8 +29,14 @@ class App:
         self.s += "\n" +self.e.get()
         self.w.itemconfig(self.canvas_id, text=self.s)
         self.w.update()
-        
-	
+    
+    def connect(self):
+	self.ircsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	self.port = 6667
+	self.ircsocket.connect(("hitchcock.freenode.net", self.port))
+	self.ircsocket.send("NICK KAIRABOTTI\r\n")
+	self.ircsocket.send("USER KAIRABOTTI KAIRABOTTI :This is irc client test.\r\n")
+	self.ircsocket.send("JOIN kairatesti\r\n")
 
 if __name__ == "__main__":        
 	root = Tk()
@@ -48,6 +56,8 @@ if __name__ == "__main__":
 	RTitle=root.title("Windows")
 
 	root.geometry("600x600+300+300")
+
+	app.connect()
 
 	root.mainloop()
 

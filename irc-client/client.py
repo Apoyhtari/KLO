@@ -4,6 +4,7 @@ import socket
 import string
 
 class App:
+    
     def __init__(self, master):		
         self.w = Canvas(master, width=500, height=400)
         self.w.pack()
@@ -19,21 +20,40 @@ class App:
         self.w.itemconfig(self.canvas_id, text=self.s)
         self.w.insert(self.canvas_id, 12, "")
         self.w.update()
-		
+        self.conn = Button(root, text="Connect", width=20, command=self.connect)
+        self.conn.pack()
+        
+        
+        	
     def callback(self):
         self.s += "\n" +self.e.get()
         self.w.itemconfig(self.canvas_id, text=self.s)
         self.w.update()
+        Self.irc.send('PRIVMSG #lollipopguild :' +self.e.get()+' \r')
 	
     def connect(self):
-        self.ircsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.port = 6667
-        self.ircsocket.connect(("irc.suomi.net", self.port))
-        self.ircsocket.send("NICK KAIRABOTTI\r\n")
-        self.ircsocket.send("USER KAIRABOTTI KAIRABOTTI :This is irc client test.\r\n")
-        self.ircsocket.send("JOIN kairatesti\r\n")
+        network = 'irc.nebula.fi'
+        port = 6667
+        self.irc = socket.socket ( socket.AF_INET, socket.SOCK_STREAM )
+        self.irc.connect ( ( network, port ) )
+        self.irc.send ( 'NICK RaivoRaimo\r\n' )
+        self.irc.send ( 'USER botty botty botty :Python IRC\r\n' )
+        self.irc.send ( 'JOIN #lollipopguild\r\n' )
+        print "yaya"
+        self.processForever()
+        
+
+    def processForever(self):
+        while True: # Be careful with these! It might send you to an infinite loop
+            self.ircmsg = self.irc.recv(1024) # receive data from the server
+            print(self.ircmsg) # Here we print what's coming from the server
+            if self.ircmsg.find ('PING') !=-1:
+                self.irc.send('PONG' + self.ircmsg.split() [1] + '\r\n')
+	
                 
-if __name__ == "__main__":        
+if __name__ == "__main__":
+
+    
         root = Tk()
         app = App(root)
         menu = Menu(root)
@@ -46,6 +66,6 @@ if __name__ == "__main__":
         filemenu.add_command(label="exit")
         RTitle=root.title("Windows")
         root.geometry("600x600+300+300")
-        app.connect()
         root.mainloop()
-
+        
+        

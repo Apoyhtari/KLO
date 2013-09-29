@@ -2,6 +2,21 @@ from Tkinter import *
 import sys
 import socket
 import string
+import threading
+
+
+#global irc = socket.socket(socket.AF_INET, socket.AF_STREAM)
+
+class Connection:
+	"""
+	This class is intended to be used for connecting to irc via a thread. The calling should be done
+	within App. As such, a new thread should also be made for handling the UI
+	connectionthread = threading.thread(None, Connection.connect, "ConnThread", params)
+	"""
+	def connect():
+		"""
+		Handle connection logic here
+		"""
 
 class App:
     
@@ -21,9 +36,7 @@ class App:
         self.w.insert(self.canvas_id, 12, "")
         self.w.update()
         self.conn = Button(root, text="Connect", width=20, command=self.connect)
-        self.conn.pack()
-        
-        
+        self.conn.pack()        
         	
     def callback(self):
         self.s += "\n" +self.e.get()
@@ -41,7 +54,6 @@ class App:
         self.irc.send ( 'JOIN #lollipopguild\r\n' )
         print "yaya"
         self.processForever()
-        
 
     def processForever(self):
         while True: # Be careful with these! It might send you to an infinite loop
@@ -51,9 +63,7 @@ class App:
                 self.irc.send('PONG' + self.ircmsg.split() [1] + '\r\n')
 	
                 
-if __name__ == "__main__":
-
-    
+if __name__ == "__main__":    
         root = Tk()
         app = App(root)
         menu = Menu(root)

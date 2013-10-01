@@ -15,6 +15,6 @@ class Connection:
 		"""
 		self.irc.send((self.network, self.port))
 		#self.irc.send("NICK RaivoRaimo\r\n")
-		#self.irc.send("USER botty botty botty; Python IRC\r\n")
+		#self.irc.send("USER botty botty botty :Python IRC\r\n")
 		#self.irc.send("JOIN #lollipopguild\r\n")
 

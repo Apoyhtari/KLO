@@ -9,7 +9,7 @@ class Connection:
 		self.port = 6667
 		self.nick = ""
 
-	def connect(self, irc, network, port):
+	def _connect(self, irc, network, port):
 		"""
 		Handle connection logic here
 		"""
@@ -19,6 +19,7 @@ class Connection:
 		self.irc.send("JOIN #lollipopguild\r\n")
 
 	def processForever(self):
+		self._connect(self.irc, self.network, self.port)
 		while True:
 			self.ircmsg = self.irc.recv(1024)	#receive data
 			print(self.ircmsg)

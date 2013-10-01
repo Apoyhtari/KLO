@@ -31,7 +31,8 @@ class App:
         self.w.update()
         Self.irc.send('PRIVMSG #lollipopguild :' +self.e.get()+' \r')
 	
-if __name__ == "__main__":    
+if __name__ == "__main__":
+		Connection conn = Connection()    
         root = Tk()
         app = App(root)
         menu = Menu(root)
@@ -44,6 +45,6 @@ if __name__ == "__main__":
         filemenu.add_command(label="exit")
         RTitle=root.title("Windows")
         root.geometry("600x600+300+300")
-        root.mainloop()
-        
-        
+		#connectionThread = threading.thread(target=conn.processForever)
+        #uiThread = threading.thread(target=root.mainloop)
+      

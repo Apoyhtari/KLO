@@ -3,7 +3,7 @@ import sys
 import socket
 import string
 import threading
-import connection
+from connection import Connection
 
 class App:
     

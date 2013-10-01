@@ -3,33 +3,7 @@ import sys
 import socket
 import string
 import threading
-
-
-global irc = socket.socket(socket.AF_INET, socket.AF_STREAM)
-global network = ""
-global port = 6667
-
-class Connection:
-	"""
-	This class is intended to be used for connecting to irc-server via a thread. The calling should be done
-	within App. As such, a new thread should also be made for handling the UI
-	connectionthread = threading.thread(None, Connection.connect, "ConnThread", params)
-	"""
-	def __init__(self):
-		self.irc = socket.socket(socket.AF_INET, socket.AF_STREAM)
-		self.network = ""
-		self.port = 6667
-		self.nick = ""
-
-	def connect(self, irc, network, port):
-		"""
-		Handle connection logic here
-		"""
-		self.irc.send((self.network, self.port))
-		#self.irc.send("NICK RaivoRaimo\r\n")
-		#self.irc.send("USER botty botty botty; python IRC\r\n")
-		#self.irc.send("JOIN #lollipopguild\r\n")
-
+import connection
 
 class App:
     

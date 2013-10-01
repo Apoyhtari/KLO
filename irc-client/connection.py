@@ -18,3 +18,9 @@ class Connection:
 		#self.irc.send("USER botty botty botty :Python IRC\r\n")
 		#self.irc.send("JOIN #lollipopguild\r\n")
 
+	def processForever(self):
+		while True:
+			self.ircmsg = self.irc.recv(1024)	#receive data
+			print(self.ircmsg)
+			if self.ircmsg.find("PING") != -1:
+				self.irc.send("PONG" + self.ircmsg()[1] + "\r\n")

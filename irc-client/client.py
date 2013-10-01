@@ -40,16 +40,7 @@ class App:
         self.irc.send ( 'USER botty botty botty :Python IRC\r\n' )
         self.irc.send ( 'JOIN #lollipopguild\r\n' )
         print "yaya"
-        self.processForever()
 
-    def processForever(self):
-        while True: # Be careful with these! It might send you to an infinite loop
-            self.ircmsg = self.irc.recv(1024) # receive data from the server
-            print(self.ircmsg) # Here we print what's coming from the server
-            if self.ircmsg.find ('PING') !=-1:
-                self.irc.send('PONG' + self.ircmsg.split() [1] + '\r\n')
-	
-                
 if __name__ == "__main__":    
         root = Tk()
         app = App(root)

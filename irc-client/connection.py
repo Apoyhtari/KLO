@@ -5,7 +5,7 @@ import string
 class Connection:
 	def __init__(self):
 		self.irc = socket.socket(socket.AF_INET, socket.AF_STREAM)
-		self.network = ""
+		self.network = "irc.nebula.fi"	#default network
 		self.port = 6667
 		self.nick = ""
 

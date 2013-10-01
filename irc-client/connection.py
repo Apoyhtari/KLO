@@ -24,3 +24,5 @@ class Connection:
 			print(self.ircmsg)
 			if self.ircmsg.find("PING") != -1:
 				self.irc.send("PONG" + self.ircmsg()[1] + "\r\n")
+
+

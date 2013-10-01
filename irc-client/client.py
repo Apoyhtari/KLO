@@ -31,16 +31,6 @@ class App:
         self.w.update()
         Self.irc.send('PRIVMSG #lollipopguild :' +self.e.get()+' \r')
 	
-    def connect(self):
-        network = 'irc.nebula.fi'
-        port = 6667
-        self.irc = socket.socket ( socket.AF_INET, socket.SOCK_STREAM )
-        self.irc.connect ( ( network, port ) )
-        self.irc.send ( 'NICK RaivoRaimo\r\n' )
-        self.irc.send ( 'USER botty botty botty :Python IRC\r\n' )
-        self.irc.send ( 'JOIN #lollipopguild\r\n' )
-        print "yaya"
-
 if __name__ == "__main__":    
         root = Tk()
         app = App(root)
